@@ -40,28 +40,3 @@ class ChatGPT(OpenAI):
 
     def from_csv(filename: str):
         pass
-
-
-def main():
-
-    import os
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
-    API_KEY = os.getenv("OPENAI_API_KEY")
-
-    chat_gpt = ChatGPT(api_key=API_KEY)
-
-    questions = ["Who was the king of England in 1000 AD?", "What did he die from??"]
-    answers = chat_gpt.ask_questions(questions=questions)
-    for q, a in zip(questions, answers):
-        print(q)
-        print("-" * 80)
-        print(a)
-        print("-" * 80)
-        print("-" * 80)
-
-
-if __name__ == "__main__":
-    main()
