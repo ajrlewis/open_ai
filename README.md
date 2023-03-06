@@ -15,3 +15,22 @@ Example Usage:
 
     for q, a in zip(questions, answers):
         print(q, "\n", "-" * 80, "\n", a, "\n", "." * 80, "\n",)
+
+Example Output:
+
+    Who was the king of England in 1000 AD?
+     --------------------------------------------------------------------------------
+
+
+    The king of England in 1000 AD was Æthelred the Unready.
+     ................................................................................
+
+    Say only his name
+     --------------------------------------------------------------------------------
+     Æthelred the Unready.
+     ................................................................................
+
+    What did he die from??
+     --------------------------------------------------------------------------------
+     Æthelred the Unready is believed to have died from natural causes, possibly from an illness or old age, in 1016.
+     ................................................................................
