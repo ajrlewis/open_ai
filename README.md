@@ -1,10 +1,10 @@
 # open_ai
 
-A collection of simple classes to access the Open AI suite
+A collection of simple classes to access the Open AI suite as a client.
 
 ## Chat GPT
 
-Usage:
+Example Usage:
 
     from open_ai import ChatGPT
 
@@ -12,11 +12,6 @@ Usage:
 
     questions = ["Who was the king of England in 1000 AD?", "What did he die from??"]
     answers = chat_gpt.ask_questions(questions=questions)
-    
-    for q, a in zip(questions, answers):
-        print(q)
-        print("-" * 80)
-        print(a)
-        print("-" * 80)
-        print("-" * 80)
 
+    for q, a in zip(questions, answers):
+        print(q, "\n", "-" * 80, "\n", a, "\n", "." * 80, "\n",)
