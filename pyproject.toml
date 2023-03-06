@@ -1,0 +1,13 @@
+[project]
+name = "Open_AI"
+requires-python = ">= 3.11.0"
+description = "A simple OpenAI implementation."
+version = "0.1.0"
+readme = "README.md"
+repository = "https://github.com/ajrlewis/open_ai"
+authors = [
+    { name = "ajrlewis", email = "git@ajrlewis.com" }
+]
+dependencies = [
+    "openai == 0.27.0",
+]
