@@ -1,6 +1,6 @@
 # open_ai
 
-A simple classes to access the Open AI suite
+A collection of simple classes to access the Open AI suite
 
 ## Chat GPT
 
