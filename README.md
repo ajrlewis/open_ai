@@ -20,17 +20,11 @@ Example Output:
 
     Who was the king of England in 1000 AD?
      --------------------------------------------------------------------------------
-
-
-    The king of England in 1000 AD was Æthelred the Unready.
-     ................................................................................
-
-    Say only his name
-     --------------------------------------------------------------------------------
-     Æthelred the Unready.
+     The king of England in 1000 AD was Æthelred II, also known as Æthelred the Unready.
      ................................................................................
 
     What did he die from??
      --------------------------------------------------------------------------------
-     Æthelred the Unready is believed to have died from natural causes, possibly from an illness or old age, in 1016.
+     Æthelred II died on April 23, 1016, possibly from natural causes, although there are some accounts that suggest that he was murdered.
      ................................................................................
+
