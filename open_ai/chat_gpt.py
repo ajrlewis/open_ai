@@ -16,13 +16,16 @@ class ChatGPT(OpenAI):
         self,
         model: str = "gpt-3.5-turbo",
         messages: List[str] = [],
-        system: str = "You are a smart assistant.",
-        **kwargs
+        system: str = "You are a smart assistant to a data engineer.",
+        **kwargs,
     ):
         super().__init__(**kwargs)
         self.model = model
         self.messages = messages
         self.messages.append({"role": "system", "content": system})
+
+    def __repr__(self) -> str:
+        return f"{self.model} model containing {len(self.messages)} messages."
 
     def ask_question(self, question: str) -> str:
         chat_question = {"role": "user", "content": question.strip()}
