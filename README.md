@@ -2,29 +2,22 @@
 
 A collection of simple classes to access the Open AI suite as a client.
 
-## Chat GPT
+## GPT Turbo
 
 Example Usage:
 
-    from open_ai import ChatGPT
+    from open_ai import GPTTurbo
 
-    chat_gpt = ChatGPT(api_key="your-api-key")
+    OPENAI_API_KEY = "your-api-key"
 
-    questions = ["Who was the king of England in 1000 AD?", "What did he die from??"]
-    answers = chat_gpt.ask_questions(questions=questions)
+    gpt = GPTTurbo(api_key=OPENAI_API_KEY)
 
-    for q, a in zip(questions, answers):
-        print(q, "\n", "-" * 80, "\n", a, "\n", "." * 80, "\n",)
+    answer = gpt.ask_question("Why does the Universe expand?")
+
+    gpt.print()
 
 Example Output:
 
-    Who was the king of England in 1000 AD?
-     --------------------------------------------------------------------------------
-     The king of England in 1000 AD was Æthelred II, also known as Æthelred the Unready.
-     ................................................................................
-
-    What did he die from??
-     --------------------------------------------------------------------------------
-     Æthelred II died on April 23, 1016, possibly from natural causes, although there are some accounts that suggest that he was murdered.
-     ................................................................................
-
+    2023-03-08 18:46:38.70  system     You are an assistant to a data engineer. Answer as concisely as possible.
+    2023-03-08 18:46:38.70  user       Why does the Universe expand?
+    2023-03-08 18:46:40.48  assistant  The Universe expands because of the force of dark energy, which causes the rate of expansion to accelerate over time.
