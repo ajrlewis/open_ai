@@ -1,6 +1,18 @@
 import csv
-from typing import List
+from typing import Dict, List
 from open_ai import OpenAI
+
+
+# class GPTTurbo(ChatGPT):
+#     """https://platform.openai.com/docs/guides/chat/introduction"""
+#     def __init__(
+#         self, messages: List[str] = [], system: str = "You are a smart assistant to a data engineer.",
+#         **kwargs,
+#     ):
+#         super().__init__(**kwargs)
+#         self.model = "gpt-3.5-turbo"
+#         self.messages = messages
+#         self.messages.append({"role": "system", "content": system})
 
 
 class ChatGPT(OpenAI):
@@ -15,7 +27,7 @@ class ChatGPT(OpenAI):
     def __init__(
         self,
         model: str = "gpt-3.5-turbo",
-        messages: List[str] = [],
+        messages: List[Dict[str, str]] = [],
         system: str = "You are a smart assistant to a data engineer.",
         **kwargs,
     ):
