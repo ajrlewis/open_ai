@@ -66,9 +66,18 @@ class GPTTurbo(OpenAI):
             answers.append(answer)
         return answers
 
-    def print(self):
-        for message in self.messages:
+    def pop_first_message(self):
+        message = self.messages[0]
+        self.messages = self.messages[1:]
+        return message
+
+    def print(self, last: bool = False):
+        messages = self.messages
+        if last:
+            messages = [messages[-1]]
+        for message in messages:
             print(message["time"], " ", message["role"].ljust(10), message["content"])
+            print("-" * 80)
 
     def to_csv(self, filename: str):
         headers = ["time", "model", "message_role", "message_content"]
