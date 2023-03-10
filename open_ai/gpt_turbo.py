@@ -46,6 +46,7 @@ class GPTTurbo(OpenAI):
         }
         self.messages.append(message)
 
+    # TODO: catch error if model too large and pass fewer messages.
     def ask_question(self, question: Question) -> Answer:
         time = f"{datetime.datetime.now()}"
         self.add_message(role="user", content=question.strip())
@@ -71,13 +72,35 @@ class GPTTurbo(OpenAI):
         self.messages = self.messages[1:]
         return message
 
+    def pop_last_message(self):
+        message = self.messages[-1]
+        self.messages = self.messages[:-1]
+        return message
+
     def print(self, last: bool = False):
         messages = self.messages
         if last:
             messages = [messages[-1]]
+        print()
         for message in messages:
-            print(message["time"], " ", message["role"].ljust(10), message["content"])
-            print("-" * 80)
+
+            if message["role"] == "system":
+                start_color = "\033[93m"  # warning
+            elif message["role"] == "user":
+                start_color = "\033[96m"  # cyan
+            elif message["role"] == "assistant":
+                start_color = "\033[92m"  # green
+
+            end_color = "\033[0m"
+            print(
+                start_color,
+                message["time"] + " " + message["role"].ljust(10),
+                end_color,
+            )
+            print("." * 30)
+            print(start_color, message["content"], end_color)
+            print()
+        print()
 
     def to_csv(self, filename: str):
         headers = ["time", "model", "message_role", "message_content"]
