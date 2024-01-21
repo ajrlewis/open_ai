@@ -1,0 +1,9 @@
+# Python
+*.DS_Store
+*.env
+*.pyc
+__pycache__/
+venv
+
+# Project
+data/

@@ -1,0 +1,17 @@
+[project]
+name = "open_ai/"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "ajrlewis", email = "hello@ajrlewis.com" }
+]
+dependencies = [
+    "openai==1.6.1",
+    "requests==2.31.0"
+]
+license = "MIT"
+
+[tool.setuptools]
+packages = ["open_ai/", "scripts/"]
