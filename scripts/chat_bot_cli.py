@@ -32,6 +32,7 @@ def main(args: argparse.Namespace):
             question = f.read()
             chat_bot.ask(question)
             chat_bot.write_json(filepath)
+            chat_bot.context_window_size += 2  # add last question and response
 
     # Print the chat bot conversation history within the context
     chat_bot.print()
@@ -63,7 +64,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--context_window_size",
         type=int,
-        default=1,
+        default=2,
         help="Size of the context window for the chat bot.",
     )
     args = parser.parse_args()

@@ -6,9 +6,9 @@ import openai
 from open_ai.open_ai import OpenAI
 
 Message = dict[str, str]
-Messages = list[dict[str, str]]
-ConversationTurn = list[Message]
-ConversationHistory = list[ConversationTurn]
+# Messages = list[Message]
+# ConversationHistory = list[Messages]
+ConversationHistory = list[Message]
 
 
 class ChatBot(OpenAI):
@@ -55,10 +55,10 @@ class ChatBot(OpenAI):
             )
 
     def _get_context_messages(self) -> Messages:
-        messages = [self._system_message] + list(
-            sum(self.conversation_history[-self.context_window_size :], [])
-        )
-        return messages
+        context_messages = [self._system_message] + self.conversation_history[
+            -self.context_window_size :
+        ]
+        return context_messages
 
     def _get_answer(self, context_messages: Messages) -> Message:
         try:
@@ -79,8 +79,8 @@ class ChatBot(OpenAI):
         context_messages.append(user_question)
         bot_answer = self._get_answer(context_messages)
         if bot_answer:
-            conversation_turn = [user_question, bot_answer]
-            self.conversation_history.append(conversation_turn)
+            self.conversation_history.append(user_question)
+            self.conversation_history.append(bot_answer)
         return bot_answer
 
     def ask_many(self, questions: List[str]) -> List[str]:
@@ -90,6 +90,26 @@ class ChatBot(OpenAI):
             bot_answers.append(bot_answer)
             time.sleep(1)
         return bot_answers
+
+    # def is_conversation_history_empty(self) -> bool:
+    #     return len(self.conversation_history) == 0
+
+    # def last_conversation_turn(self):
+    #     if self.is_conversation_history_empty:
+    #         return []
+    #     return self.conversation_history[-1]
+
+    # def last_question(self) -> Opontial[str]:
+    #     try:
+    #         return self.conversation_history[-1][0]["content"]
+    #     except:
+    #         return
+
+    # def last_answer(self) -> Opontial[str]:
+    #     try:
+    #         return self.conversation_history[-1][-1]["content"]
+    #     except:
+    #         return
 
     @classmethod
     def tame_short_term_memory(
@@ -125,13 +145,15 @@ class ChatBot(OpenAI):
         for i, (user_message, bot_message) in enumerate(
             zip(user_messages, bot_messages)
         ):
-            ChatBot._print_message(i + 1, "\033[95m", "user", user_message["content"])
-            ChatBot._print_message(i + 1, "\033[96m", "bot", bot_message["content"])
+            ChatBot._print_message(
+                i * 2 + 1, "\033[95m", "user", user_message["content"]
+            )
+            ChatBot._print_message(i * 2 + 2, "\033[96m", "bot", bot_message["content"])
         print()
 
     @staticmethod
     def _print_message(index: int, color: str, role: str, content: str):
-        print(f"{color}[{index}] {role}\033[0m: {content}")
+        print(f"{color} [{index}] {role}\033[0m: {content}")
 
     def to_dict(self) -> dict[str, str]:
         data = {

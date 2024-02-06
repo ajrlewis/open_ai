@@ -1,6 +1,6 @@
 [project]
-name = "open_ai/"
-version = "0.1.0"
+name = "open_ai"
+version = "0.2.0"
 description = ""
 readme = "README.md"
 requires-python = ">=3.9"
@@ -9,9 +9,10 @@ authors = [
 ]
 dependencies = [
     "openai==1.6.1",
-    "requests==2.31.0"
+    "requests==2.31.0",
+    "python-dotenv==1.0.0"
 ]
 license = "MIT"
 
 [tool.setuptools]
-packages = ["open_ai/", "scripts/"]
+packages = ["open_ai/", "scripts/", "tests/"]
