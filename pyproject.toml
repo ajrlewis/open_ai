@@ -15,4 +15,4 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["open_ai/", "scripts/", "tests/"]
+packages = [ "open_ai", "scripts", "tests" ]
