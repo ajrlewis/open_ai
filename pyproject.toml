@@ -1,9 +1,10 @@
 [project]
 name = "open_ai"
 version = "0.2.0"
-description = ""
+description = "A python wrapper for open AI."
 readme = "README.md"
 requires-python = ">=3.9"
+license = "MIT"
 authors = [
     { name = "ajrlewis", email = "hello@ajrlewis.com" }
 ]
@@ -12,7 +13,6 @@ dependencies = [
     "requests==2.31.0",
     "python-dotenv==1.0.0",
 ]
-license = "MIT"
 
 [tool.setuptools]
 packages = ["open_ai/", "scripts/", "tests/"]
