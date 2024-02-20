@@ -2,6 +2,7 @@ import os
 import sys
 import argparse
 from dotenv import load_dotenv
+import openai
 
 sys.path.append("./")
 from open_ai.chat_bot import ChatBot
@@ -9,21 +10,22 @@ from open_ai.chat_bot import ChatBot
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-CHAT_BOT_SYSTEM = os.getenv("CHAT_BOT_SYSTEM")
-CHAT_BOT_TEMPERATURE = os.getenv("CHAT_BOT_TEMPERATURE")
+OPEN_AI_API_KEY = os.getenv("OPEN_AI_API_KEY")
+CHAT_BOT_SYSTEM = os.getenv("OPEN_AI_CHAT_BOT_SYSTEM")
+CHAT_BOT_TEMPERATURE = os.getenv("OPEN_AI_CHAT_BOT_TEMPERATURE")
 
 
 def main(args: argparse.Namespace):
     # Load the chat bot from JSON file in data directory if it exists
     filepath = f"{args.data_dir}/chat-bot-{args.subject}.json"
+    client = openai.OpenAI(api_key=OPEN_AI_API_KEY)
     chat_bot = ChatBot.read_json(
         filepath,
         model=args.model,
         temperature=CHAT_BOT_TEMPERATURE,
         system=CHAT_BOT_SYSTEM,
         context_window_size=args.context_window_size,
-        api_key=OPENAI_API_KEY,
+        client=client,
     )
 
     # Ask and write the chat bot conversation history to

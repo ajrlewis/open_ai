@@ -5,10 +5,10 @@ class OpenAI:
     """A class to interact with Open AI's python client.
 
     Attributes:
-        api_key: Your API key for Open AI.
+        client: OpenAI client dependency to inject.
     References:
         https://github.com/openai/openai-python
     """
 
-    def __init__(self, api_key: str):
-        self.client = openai.OpenAI(api_key=api_key)
+    def __init__(self, client: openai.OpenAI):
+        self.client = client

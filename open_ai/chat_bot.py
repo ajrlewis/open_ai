@@ -15,6 +15,7 @@ class ChatBot(OpenAI):
     """A class to interact with Open AI's Chat GPT model.
 
     Attributes:
+        client: Open AI client to inject
         model: The name of the model.
         temperature: The temperature of the model.
         system: The context system of the chat.
@@ -27,9 +28,9 @@ class ChatBot(OpenAI):
 
     def __init__(
         self,
-        model: str,
-        temperature: float,
-        system: str,
+        model: str = "gpt-3.5-turbo",
+        temperature: float = 0.2,
+        system: str = "You are OpenAI's GPT natural language learning model.",
         context_window_size: int = 2,
         conversation_history: ConversationHistory = [],
         **kwargs,
@@ -67,11 +68,12 @@ class ChatBot(OpenAI):
                 temperature=self.temperature,
                 messages=context_messages,
             )
-            answer = response.choices[0].message.content
+            content = response.choices[0].message.content
+            answer = ChatBot.create_message(role="assistant", content=content)
         except Exception as e:
             raise e
         else:
-            return ChatBot.create_message(role="assistant", content=answer)
+            return answer
 
     def ask(self, question: str) -> str:
         context_messages = self._get_context_messages()  # Get the context messages
@@ -115,18 +117,11 @@ class ChatBot(OpenAI):
     def tame_short_term_memory(
         cls,
         api_key: str,
-        system: str = "You are OpenAI's GPT natural language learning model.",
         filepath: str = "tame-short-term-memory.json",
     ) -> ChatBot:
-        model = "gpt-3.5-turbo"
-        temperature = 0.2
-        context_window_size = 2
         chat = cls.read_json(
             filepath,
             api_key=api_key,
-            model=model,
-            temperature=temperature,
-            system=system,
             context_window_size=context_window_size,
         )
         return chat

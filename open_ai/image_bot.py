@@ -9,10 +9,7 @@ class ImageBot(OpenAI):
 
         Attributes:
             model: The name of the model.
-            temperature: The temperature of the model.
-        References:
         """
-
         super().__init__(**kwargs)
         self.model = model
         self.data = bytes()

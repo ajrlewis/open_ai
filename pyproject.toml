@@ -1,6 +1,6 @@
 [project]
 name = "open_ai"
-version = "0.2.0"
+version = "0.3.0"
 description = "A python wrapper for open AI."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -10,7 +10,7 @@ authors = [
 ]
 dependencies = [
     "openai==1.6.1",
-    "requests==2.31.0",
+    "requests>=2.29.0",
     "python-dotenv==1.0.0",
 ]
 
