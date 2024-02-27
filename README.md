@@ -32,18 +32,20 @@ OPEN_AI_APIKEY="your-api-key"
 ```python
 import os
 from dotenv import load_dotenv
+import openai
 from open_ai.chat_bot import ChatBot
 
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=OPEN_AI_API_KEY)
 
 bot = ChatBot(
     model="gpt-3.5-turbo",
     temperature=0.2,
     system="You are Open AI's Chat GPT natural language learning model.",
     context_window_size=2,
-    api_key=api_key,
+    client=client,
 )
 
 bot.ask("Hello World!")
@@ -114,7 +116,7 @@ The following command line usage:
 python3 scripts/chat_bot_cli.py --subject hello-world --context_window_size 2
 ```
 
-will print and write the same as above
+will print and write the same as above and save the output to `data/hello-world.json`.
 
 ## License
 
