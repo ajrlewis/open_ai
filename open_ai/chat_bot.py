@@ -57,7 +57,7 @@ class ChatBot(OpenAI):
 
     def _get_context_messages(self) -> Messages:
         context_messages = [self._system_message] + self.conversation_history[
-            -self.context_window_size :
+            len(self.conversation_history) - self.context_window_size :
         ]
         return context_messages
 
